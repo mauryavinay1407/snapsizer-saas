@@ -5,8 +5,8 @@ import { NextResponse,NextRequest } from 'next/server';
     // Configuration
     cloudinary.config({ 
         cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME, 
-        api_key:  process.env.CLOUDINARY_API_KEY, 
-        api_secret:  process.env.CLOUDINARY_API_SECRET // Click 'View Credentials' below to copy your API secret
+        api_key: process.env.CLOUDINARY_API_KEY, 
+        api_secret: process.env.CLOUDINARY_API_SECRET // Click 'View Credentials' below to copy your API secret
     });
     
 interface CloudinaryUploadResult{
@@ -18,7 +18,7 @@ export async function POST(request: NextRequest){
     const {userId}=auth();
 
     if(!userId)
-        return NextResponse.json({error:"Unauthorized Access"},{status:401});
+        return NextResponse.json({error:"Unauthorized access"},{status:401});
 
     try {
         const formData = await request.formData();
@@ -42,7 +42,6 @@ export async function POST(request: NextRequest){
                 uploadStream.end(buffer)
             }
         )
-
         return NextResponse.json(
             {
                 publicId: result.public_id
