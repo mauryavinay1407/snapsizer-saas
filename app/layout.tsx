@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ClerkProvider} from '@clerk/nextjs'
 import "./globals.css";
+import {Toaster} from 'react-hot-toast'
+import {shadesOfPurple } from "@clerk/themes";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,9 +18,28 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <ClerkProvider
+    appearance={{
+      baseTheme:  [shadesOfPurple],
+      variables: {
+        colorPrimary: "white",
+        colorText: "#ffffff"
+      }
+    }}
+    >
+      
+    <html lang="en" suppressHydrationWarning={true}>
+      <body className={inter.className}>
+
+              <div className="flex items-start justify-center min-h-screen">
+              <Toaster
+  position="top-center"
+  reverseOrder={false}
+/>
+        {children}
+              </div>
+      
+        </body>
     </html>
     </ClerkProvider>
   );
