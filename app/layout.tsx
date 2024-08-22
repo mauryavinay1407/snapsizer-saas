@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import { ClerkProvider} from '@clerk/nextjs'
 import "./globals.css";
 import {Toaster} from 'react-hot-toast'
-import {shadesOfPurple } from "@clerk/themes";
+import {shadesOfPurple,dark } from "@clerk/themes";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <ClerkProvider
     appearance={{
-      baseTheme:  [shadesOfPurple],
+      baseTheme:  [dark],
       variables: {
         colorPrimary: "white",
         colorText: "#ffffff"
